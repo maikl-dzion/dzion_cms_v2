@@ -1,0 +1,11 @@
+{
+	"name": "Dzion-cms",
+	"description": "Dzion-cms, flex",
+	"keywords": [ "dzion", "cms", "", "http" ],
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"Dzion\\": "src/"
+		}
+	}
+}
