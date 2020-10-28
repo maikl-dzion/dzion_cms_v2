@@ -8,8 +8,9 @@
 
 namespace Dzion\Core;
 
+use Dzion\Interfaces\BaseConstantsInterface;
 
-class BaseConstants
+class BaseConstants implements BaseConstantsInterface
 {
 
   const APP_CONTROLLERS_NAMESPACE = "Dzion\\App\\Controllers\\";

@@ -5,8 +5,6 @@ namespace Dzion;
 use Dzion\Interfaces\RequestInterface;
 use Dzion\Interfaces\ResponseInterface;
 use Dzion\Interfaces\RouterInteface;
-// use Dzion\Core\Response;
-
 
 class Application
 {
@@ -27,10 +25,6 @@ class Application
         $route = $this->router->init();
 
         $response = $this->runController($route);
-
-        // print_r([$route]);
-        // print_r([$route, $response]);
-        // $response = new Response();
 
         return $response;
     }
