@@ -15,7 +15,7 @@ interface ContainerInterface
      * @param string $key
      * @return mixed
      */
-    public function get(string $key);
+    public function get(string $key, $params = []);
 
     public function has(string $key);
 
