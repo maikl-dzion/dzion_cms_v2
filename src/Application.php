@@ -2,6 +2,7 @@
 
 namespace Dzion;
 
+use Dzion\Core\BaseConstants;
 use Dzion\Interfaces\RequestInterface;
 use Dzion\Interfaces\ResponseInterface;
 use Dzion\Interfaces\RouterInteface;
@@ -11,13 +12,16 @@ class Application
     protected $router;
     protected $request;
     protected $response;
+    protected $controllerNamespace;
 
     public function __construct(RouterInteface $router,
                                 RequestInterface $request,
                                 ResponseInterface $response) {
+
         $this->router   = $router;
         $this->request  = $request;
         $this->response = $response;
+        $this->controllerNamespace = BaseConstants::APP_CONTROLLERS_NAMESPACE;
     }
 
     public function run() : ResponseInterface {
@@ -31,7 +35,8 @@ class Application
 
     protected function runController($route) {
 
-            $class      = $route->namespace . $route->controller;
+            $namespace  = $this->controllerNamespace;
+            $class      = $namespace . $route->controller;
             // $class      = APP_CONTROLLERS_NAMESPACE . "{$route->controller}";
             $arguments  = $route->arguments;
             $action     = $route->action;

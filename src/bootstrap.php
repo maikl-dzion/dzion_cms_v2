@@ -9,7 +9,7 @@ use Dzion\Core\Router;
 //define("SERVICES_NAMESPACE", "Dzion\\Services\\");
 
 $request  = new Request();
-$router   = new Router( BaseConstants::APP_CONTROLLERS_NAMESPACE);
+$router   = new Router();
 $response = new Response();
 
 require_once ROOT_DIR . 'config/routes.php';

@@ -13,18 +13,17 @@ class Router implements RouterInteface
 
     protected $arguments = array();
     protected $routeInfo = array();
-    protected $namespace;
+    // protected $namespace;
     protected $controller;
     protected $action;
     protected $route;
 
-    public function __construct(string $controllerNamespace)
+    public function __construct()
     {
        $this->requestUri = $_SERVER['REQUEST_URI'];
        $this->phpSelf    = $_SERVER['PHP_SELF'];
        $this->requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
-       $this->namespace = $controllerNamespace;
-
+       // $this->namespace = $controllerNamespace;
     }
 
     public function init() : \stdClass
@@ -33,17 +32,17 @@ class Router implements RouterInteface
 
         $route = new \stdClass();
 
-        if(!$this->controller || !$this->action) {
-            $this->controller = 'NotPageController';
-            $this->action     = 'index';
-            $this->arguments['message'] = 'Нет такого маршрута';
-        }
+//        if(!$this->controller || !$this->action) {
+//            $this->controller = 'NotPageController';
+//            $this->action     = 'index';
+//            $this->arguments['message'] = 'Нет такого маршрута';
+//        }
 
         $route->arguments  = $this->arguments;
         $route->controller = $this->controller;
         $route->action     = $this->action;
         $route->routeInfo  = $this->routeInfo;
-        $route->namespace  = $this->namespace;
+        // $route->namespace  = $this->namespace;
 
         $this->route       = $route;
 
