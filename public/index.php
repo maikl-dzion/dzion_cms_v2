@@ -14,9 +14,11 @@ use Dzion\Application;
 
 try {
 
-    $app = new Application($router,$request);
+    $app = new Application($router, $request, $response);
 
-    $app->run();
+    $response = $app->run();
+
+    $response->getResponse();
 
 } catch (\Exception $e) {
 

@@ -13,6 +13,7 @@ class Router implements RouterInteface
 
     protected $arguments = array();
     protected $routeInfo = array();
+    protected $namespace;
     protected $controller;
     protected $action;
     protected $route;
@@ -30,12 +31,22 @@ class Router implements RouterInteface
 
         $route = new \stdClass();
 
+        $this->namespace = BaseConstants::APP_CONTROLLERS_NAMESPACE;
+
+        if(!$this->controller || !$this->action) {
+            // $this->namespace  = SERVICES_NAMESPACE;
+            $this->controller = 'NotPageController';
+            $this->action     = 'index';
+            $this->arguments['message'] = 'Нет такого маршрута';
+        }
+
         $route->arguments  = $this->arguments;
         $route->controller = $this->controller;
         $route->action     = $this->action;
         $route->routeInfo  = $this->routeInfo;
+        $route->namespace  = $this->namespace;
 
-        $this->route   = $route;
+        $this->route       = $route;
 
         return $this->route;
     }
@@ -82,7 +93,7 @@ class Router implements RouterInteface
         $this->add($uri, $controller, 'put');
     }
 
-    protected function compareRoute($route, $curUriArr, $count) {
+    protected function compareRoute($route, $curUriArr, $count) : bool {
 
         $parameters = array();
         $resultCount = 0;

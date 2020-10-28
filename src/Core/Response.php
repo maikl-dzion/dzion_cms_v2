@@ -13,9 +13,16 @@ use Dzion\Interfaces\ResponseInterface;
 
 class Response implements ResponseInterface
 {
+    protected $data;
+    protected $param;
 
-    public function init()
+    public function init($data, $param = array())
     {
-        // TODO: Implement init() method.
+        $this->data = $data;
+        $this->param = $param;
+    }
+
+    public function getResponse() {
+        print_r($this->data); die;
     }
 }

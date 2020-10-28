@@ -5,38 +5,44 @@ namespace Dzion;
 use Dzion\Interfaces\RequestInterface;
 use Dzion\Interfaces\ResponseInterface;
 use Dzion\Interfaces\RouterInteface;
-use Dzion\Core\Response;
+// use Dzion\Core\Response;
 
 
 class Application
 {
     protected $router;
     protected $request;
+    protected $response;
 
     public function __construct(RouterInteface $router,
-                                RequestInterface $request) {
-        $this->router = $router;
-        $this->request = $request;
+                                RequestInterface $request,
+                                ResponseInterface $response) {
+        $this->router   = $router;
+        $this->request  = $request;
+        $this->response = $response;
     }
 
     public function run() : ResponseInterface {
 
         $route = $this->router->init();
 
-        $response = $this->initController($route);
+        $response = $this->runController($route);
 
-        print_r([$route, $response]);
-
-        $response = new Response();
+        // print_r([$route]);
+        // print_r([$route, $response]);
+        // $response = new Response();
 
         return $response;
     }
 
-    protected function initController($route) {
+    protected function runController($route) {
 
-            $class      = APP_CONTROLLERS_NAMESPACE . "{$route->controller}";
+            $class      = $route->namespace . $route->controller;
+            // $class      = APP_CONTROLLERS_NAMESPACE . "{$route->controller}";
             $arguments  = $route->arguments;
             $action     = $route->action;
+
+            // $class = "Dzion\\Services\\NotPageController";
 
             if(!class_exists($class))
                 throw new \Exception(
@@ -51,7 +57,6 @@ class Application
                 );
 
             if(!empty($arguments)) {
-                // $args = implode(',', $arguments);
 
                 $args = array();
                 foreach ($arguments as $key => $value)
@@ -62,7 +67,9 @@ class Application
                 $response = $controller->$action();
             }
 
-            return $response;
+            $this->response->init($response, []);
+
+            return $this->response;
     }
 
 }

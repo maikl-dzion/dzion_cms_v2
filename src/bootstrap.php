@@ -1,14 +1,18 @@
 <?php
 
 use Dzion\Core\Request;
+use Dzion\Core\Response;
 use Dzion\Core\Router;
 
-$request = new Request();
-$router  = new Router();
+//define("APP_CONTROLLERS_NAMESPACE", "Dzion\\App\\Controllers\\");
+//define("SERVICES_NAMESPACE", "Dzion\\Services\\");
+
+$request  = new Request();
+$router   = new Router();
+$response = new Response();
 
 require_once ROOT_DIR . 'config/routes.php';
 
-define("APP_CONTROLLERS_NAMESPACE", "Dzion\\App\\Controllers\\");
 
 //$route = $router->init();
 //

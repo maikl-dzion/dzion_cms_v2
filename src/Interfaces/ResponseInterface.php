@@ -11,6 +11,5 @@ namespace Dzion\Interfaces;
 
 interface ResponseInterface
 {
-    public function init();
-
+    public function init($data, $param = []);
 }
