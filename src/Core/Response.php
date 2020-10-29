@@ -16,7 +16,7 @@ class Response implements ResponseInterface
     protected $data;
     protected $param;
 
-    public function init($data, $param = array())
+    public function init($data, $param = [])
     {
         $this->data = $data;
         $this->param = $param;

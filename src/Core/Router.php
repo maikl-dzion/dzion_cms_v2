@@ -6,13 +6,13 @@ use Dzion\Interfaces\RouterInteface;
 
 class Router implements RouterInteface
 {
-    public    $routes = array();
+    public    $routes = [];
     protected $requestUri;
     protected $phpSelf;
     protected $requestMethod;
 
-    protected $arguments = array();
-    protected $routeInfo = array();
+    protected $arguments = [];
+    protected $routeInfo = [];
     // protected $namespace;
     protected $controller;
     protected $action;
@@ -93,7 +93,7 @@ class Router implements RouterInteface
 
     protected function compareRoute($route, $curUriArr, $count) : bool {
 
-        $parameters = array();
+        $parameters = [];
         $resultCount = 0;
         $routeCount  = 0;
         $argsCount   = 0;
@@ -140,7 +140,7 @@ class Router implements RouterInteface
         $methodName = $this->requestMethod;
         if($this->routes[$methodName])
             return $this->routes[$methodName];
-        return array();
+        return [];
     }
 
     protected function getReguestUri() : array
@@ -150,7 +150,7 @@ class Router implements RouterInteface
         $uri   = explode($delimiter, rtrim(substr($this->requestUri, 1), $delimiter));
         $self  = explode($delimiter, rtrim(substr($this->phpSelf, 1), $delimiter));
 
-        $resultUrl = array();
+        $resultUrl = [];
 
         foreach ($uri as $key => $value) {
             $stat = array_search($value, $self);

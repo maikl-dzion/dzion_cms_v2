@@ -61,24 +61,19 @@ class Container implements ContainerInterface
         return $reflect->newInstanceArgs($dependencies);
     }
 
-
     protected function getDependencies($parameters)
     {
         $dependencies = [];
+
         foreach ($parameters as $parameter) {
-            // get the type hinted class
-            $dependency = $parameter->getClass();
-            if ($dependency === NULL) {
-                // check if default value for a parameter is available
-                if ($parameter->isDefaultValueAvailable()) {
-                    // get default value of parameter
+            $dependency = $parameter->getClass(); // get the type hinted class
+            if ($dependency === NULL) {  // check if default value for a parameter is available
+                if ($parameter->isDefaultValueAvailable()) // get default value of parameter
                     $dependencies[] = $parameter->getDefaultValue();
-                } else {
+                else
                     throw new \Exception("Can not resolve class dependency {$parameter->name}");
-                }
             } else {
-                // get dependency resolved
-                $dependencies[] = $this->get($dependency->name);
+                $dependencies[] = $this->get($dependency->name); // get dependency resolved
             }
         }
 
