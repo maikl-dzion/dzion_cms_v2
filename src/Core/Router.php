@@ -55,6 +55,8 @@ class Router implements RouterInteface
         $routes    = $this->getRoutes();
         $_count    = count($curUriArr);
 
+        // lg($curUriArr);
+
         foreach ($routes as $uri => $param) {
             $route = explode('/', trim($uri, '/'));
             if(count($route) != $_count)
@@ -118,13 +120,13 @@ class Router implements RouterInteface
 
         $resultCount = $routeCount + $argsCount;
 
-        $routeInfo = array(
+        $routeInfo = [
              'uri'         => $curUriArr,
              'route'       => $route,
              'all-count'   => $count,
              'route-count' => $routeCount,
              'args-count'  => $argsCount
-        );
+        ];
 
         if($resultCount == $count) {
             $this->routeInfo = $routeInfo;

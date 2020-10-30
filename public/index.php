@@ -14,6 +14,8 @@ use Dzion\Application;
 
 try {
 
+    // print_r($router); die;
+
     $app = new Application($router, $request, $response);
 
     $response = $app->run();
@@ -24,6 +26,18 @@ try {
 
     echo $e->getMessage();
 
+}
+
+
+/////////////////////////////
+///////  Helpers ////////////
+///
+function lg($value, $type = 0) {
+    $out = '<pre>' . print_r($value, true) . '</pre>';
+    if ($type)
+        return $out;
+    print $out;
+    die;
 }
 
 
