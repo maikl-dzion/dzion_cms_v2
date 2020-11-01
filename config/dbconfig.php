@@ -3,10 +3,11 @@
 return [
 
     'host'     => '185.63.191.96',
-    'user'     => 'iac_dashboards',
-    'password' => 'w1user',
-    'dbname'   => 'w1password',
+    'dbname'   => 'iac_dashboards',
+    'user'     => 'w1user',
+    'password' => 'w1password',
     'driver'   => 'pgsql',
-    'port'     => 5432
+    'port'     => 5432,
+    'charset'     => 'utf8',
 
 ];
